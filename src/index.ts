@@ -18,7 +18,7 @@ async function main() {
   const targetDir = path.resolve(args[0]);
   const nodeModulesDirs = await findNodeModulesFolders(targetDir);
   if (nodeModulesDirs.length === 0) {
-    console.log("No 'node_modules' folders found.");
+    console.log("🛑 No 'node_modules' folders found.");
     return;
   }
 
@@ -35,7 +35,7 @@ async function main() {
     const dirSize = getDirectorySize(nodeModulesDir);
     totalSizeInBytes += dirSize;
     process.stdout.write(
-      `\rLocating node_modules folders (found ${counter})...`,
+      `\r🕵🏻  Locating node_modules folders (found ${counter})...`,
     );
     table.push([nodeModulesDir, `${unitsFormatter(dirSize)}`]);
   }
@@ -45,19 +45,19 @@ async function main() {
   console.log(table.toString());
 
   const answer = await prompt(
-    "Do you want to delete the above folders? (yes/no): ",
+    "🙋 Do you want to delete the above folders? (yes/no): ",
   );
   if (answer.toLowerCase() === "yes" || answer.toLowerCase() === "y") {
     for (const nodeModulesDir of nodeModulesDirs) {
       await fs.promises.rm(nodeModulesDir, { recursive: true });
     }
     console.log(
-      "All specified node_modules folders have been deleted. Total removed size: " +
+      "🤙 All specified node_modules folders have been deleted. Total removed size: " +
         unitsFormatter(totalSizeInBytes),
     );
     return;
   }
-  console.log("No node_modules folders were deleted.");
+  console.log("👎 No worries, no node_modules folders were deleted!");
 }
 
 main().catch((error) => {
