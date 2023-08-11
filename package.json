@@ -1,6 +1,6 @@
 {
   "name": "node-modules-cleanup",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Find and delete all node_module folders",
   "main": "dist/src/index.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "node-modules-cleanup": "./dist/src/index.js"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/cli-table": "^0.3.1",
     "@types/inquirer": "^9.0.3",
