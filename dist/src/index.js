@@ -37,7 +37,7 @@ const unitsFormatter_1 = require("./utils/unitsFormatter");
 async function main() {
     const args = process.argv.slice(2);
     if (args.length < 1) {
-        console.log("🛑 Please provide a path.");
+        console.log("🛑 Please provide a path, e.g './' for the current folder");
         return;
     }
     const targetDir = path.resolve(args[0]);
