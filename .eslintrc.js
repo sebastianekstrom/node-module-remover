@@ -14,7 +14,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: [".eslintrc.js", ".eslintrc.cjs"],
+      files: [".eslintrc.js", ".eslintrc.cjs", "jest.config.js"],
       parserOptions: {
         project: null,
       },
