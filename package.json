@@ -31,7 +31,5 @@
     "ts-node": "^10.9.1",
     "typescript": "*"
   },
-  "dependencies": {
-    "node-modules-cleanup": "^1.0.0"
-  }
+  "dependencies": {}
 }
