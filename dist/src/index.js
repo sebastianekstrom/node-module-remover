@@ -48,7 +48,7 @@ async function main() {
     }
     const table = new cli_table_1.default({
         head: ["Path", "Size"],
-        colWidths: [80, 15],
+        colWidths: [100, 15],
     });
     let totalSizeInBytes = 0;
     let counter = 0;

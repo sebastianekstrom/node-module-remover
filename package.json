@@ -1,6 +1,6 @@
 {
   "name": "node-modules-cleanup",
-  "version": "1.0.11",
+  "version": "1.0.14",
   "description": "Find and delete all node_module folders",
   "main": "dist/src/index.js",
   "scripts": {
@@ -35,5 +35,7 @@
     "ts-node": "^10.9.1",
     "typescript": "*"
   },
-  "dependencies": {}
+  "dependencies": {
+    "cli-table": "^0.3.11"
+  }
 }
