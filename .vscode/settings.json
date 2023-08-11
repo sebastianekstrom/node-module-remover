@@ -1,0 +1,5 @@
+{
+  "window.title": "${activeEditorMedium}${separator}${rootName}",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
