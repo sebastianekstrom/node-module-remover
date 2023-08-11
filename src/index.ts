@@ -24,7 +24,7 @@ async function main() {
 
   const table = new Table({
     head: ["Path", "Size"],
-    colWidths: [80, 15],
+    colWidths: [100, 15],
   });
 
   let totalSizeInBytes = 0;
