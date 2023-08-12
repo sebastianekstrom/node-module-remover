@@ -11,14 +11,14 @@ async function main() {
   const args = process.argv.slice(2);
 
   if (args.length < 1) {
-    console.log("🛑 Please provide a path, e.g './' for the current folder");
+    console.log("❌ Please provide a path, e.g './' for the current folder");
     return;
   }
 
   const targetDir = path.resolve(args[0]);
   const nodeModulesDirs = await findNodeModulesFolders(targetDir);
   if (nodeModulesDirs.length === 0) {
-    console.log("🛑 No 'node_modules' folders found.");
+    console.log("❌ No 'node_modules' folders found.");
     return;
   }
 
