@@ -48,12 +48,19 @@ async function main() {
     "🙋 Do you want to delete the above folders? (yes/no): ",
   );
   if (answer.toLowerCase() === "yes" || answer.toLowerCase() === "y") {
+    let deletedCounter = 0;
     for (const nodeModulesDir of nodeModulesDirs) {
       await fs.promises.rm(nodeModulesDir, { recursive: true });
+      deletedCounter++;
+      process.stdout.write(
+        `\r🗑️  Deleting node_modules folders (${deletedCounter}/${nodeModulesDirs.length})...`,
+      );
     }
+    console.log();
     console.log(
-      "🤙 All specified node_modules folders have been deleted. Total removed size: " +
-        unitsFormatter(totalSizeInBytes),
+      `🤙 All specified node_modules folders have been deleted. Total removed size: ${unitsFormatter(
+        totalSizeInBytes,
+      )}`,
     );
     return;
   }
