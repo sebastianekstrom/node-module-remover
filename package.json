@@ -1,13 +1,13 @@
 {
   "name": "node-modules-cleanup",
-  "version": "1.0.18",
+  "version": "1.0.25",
   "description": "Find and delete all node_module folders",
   "main": "dist/src/index.js",
   "scripts": {
     "dev": "ts-node ./src/index.ts",
     "lint": "npx eslint ./src/*.ts ./src/**/*.ts --max-warnings=0",
     "type-check": "tsc",
-    "build": "npx tsc && npm run post-build",
+    "build": "npx tsc",
     "post-build": "node dist/scripts/add-shebang.js",
     "test": "jest"
   },
