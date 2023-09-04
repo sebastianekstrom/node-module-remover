@@ -1,6 +1,7 @@
 # 🗑️ node-modules-cleanup
 
 [![npm version](https://badge.fury.io/js/node-modules-cleanup.svg)](https://badge.fury.io/js/node-modules-cleanup)
+[![codecov](https://codecov.io/gh/sebastianekstrom/node-module-remover/graph/badge.svg?token=GOXVSJ3VQ0)](https://codecov.io/gh/sebastianekstrom/node-module-remover)
 
 A simple CLI to bulk remove `node_modules` folders and free up some of that precious disk space.
 
