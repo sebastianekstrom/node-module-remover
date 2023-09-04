@@ -7,19 +7,18 @@ A simple CLI to bulk remove `node_modules` folders and free up some of that prec
 
 ![CLI_V6](https://i.imgur.com/JJ0zYzx.gif)
 
-
 ## Usage
 
 ```bash
-npx node-modules-cleanup <path>
+npx node-modules-cleanup@latest <path>
 ```
 
 ## Examples
 
 ```bash
 # Find all node_modules in the current directory
-npx node-modules-cleanup ./
+npx node-modules-cleanup@latest ./
 
 # Find all node_modules in a specific directory
-npx node-modules-cleanup ~/Desktop/projects
+npx node-modules-cleanup@latest ~/Desktop/projects
 ```
