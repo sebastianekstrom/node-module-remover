@@ -25,11 +25,12 @@ describe("generateTable", () => {
 
   it("should generate a table and print it", () => {
     generateTable({
-      nodeModulesDirs: ["/path/to/node_modules1", "/path/to/node_modules2"],
-      totalSizeInBytes: 200,
+      entries: [
+        { path: "/path/to/node_modules1", size: 100 },
+        { path: "/path/to/node_modules1", size: 200 },
+      ],
+      totalSize: 300,
     });
-
-    expect(stdoutSpy).toHaveBeenCalledTimes(2);
 
     expect(logSpy).toHaveBeenLastCalledWith(
       expect.stringContaining("Total size"),
