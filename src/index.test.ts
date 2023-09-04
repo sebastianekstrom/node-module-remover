@@ -56,4 +56,17 @@ describe("main", () => {
     await main();
     expect(logSpy).toHaveBeenCalledWith("❌ No 'node_modules' folders found.");
   });
+
+  it("should prompt and not delete if user input is not 'yes' or 'y'", async () => {
+    process.argv = ["path1", "path2", "./sample"];
+    (findNodeModulesFolders as jest.Mock).mockResolvedValue([
+      "/path/to/node_modules",
+    ]);
+    (prompt as jest.Mock).mockResolvedValue("no");
+
+    await main();
+    expect(logSpy).toHaveBeenCalledWith(
+      "👍 No worries, no node_modules folders were deleted!",
+    );
+  });
 });
