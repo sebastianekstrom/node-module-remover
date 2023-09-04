@@ -1,13 +1,17 @@
 import Table from "cli-table";
 import { unitsFormatter } from "./unitsFormatter";
-import { getDirectorySize } from "./getDirectorySize";
+
+interface Entry {
+  path: string;
+  size: number;
+}
 
 export const generateTable = ({
-  nodeModulesDirs,
-  totalSizeInBytes,
+  entries,
+  totalSize,
 }: {
-  nodeModulesDirs: string[];
-  totalSizeInBytes: number;
+  entries: Entry[];
+  totalSize: number;
 }) => {
   const table = new Table({
     head: ["Path", "Size"],
@@ -17,18 +21,11 @@ export const generateTable = ({
     },
   });
 
-  let counter = 0;
-
-  for (const nodeModulesDir of nodeModulesDirs) {
-    counter++;
-    const dirSize = getDirectorySize(nodeModulesDir);
-    process.stdout.write(
-      `\r🕵🏻  Locating node_modules folders (found ${counter})...`,
-    );
-    table.push([nodeModulesDir, `${unitsFormatter(dirSize)}`]);
+  for (const entry of entries) {
+    table.push([entry.path, `${unitsFormatter(entry.size)}`]);
   }
 
   console.log();
-  table.push(["Total size", `${unitsFormatter(totalSizeInBytes)}`]);
+  table.push(["Total size", `${unitsFormatter(totalSize)}`]);
   console.log(table.toString());
 };

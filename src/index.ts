@@ -5,7 +5,7 @@ import { prompt } from "./utils/prompt";
 import { findNodeModulesFolders } from "./utils/findNodeModulesFolders";
 import { unitsFormatter } from "./utils/unitsFormatter";
 import { generateTable } from "./utils/generateTable";
-import { getTotalSizeInBytes } from "./utils/getTotalSizeInBytes";
+import { calculateSizeOfNodeModulesDirs } from "./utils/calculateSizeOfNodeModulesDirs";
 
 export async function main() {
   const args = process.argv.slice(2);
@@ -22,30 +22,33 @@ export async function main() {
     return;
   }
 
-  const totalSizeInBytes = getTotalSizeInBytes(nodeModulesDirs);
-  generateTable({ nodeModulesDirs, totalSizeInBytes });
+  const { entries, totalSize } = calculateSizeOfNodeModulesDirs({
+    nodeModulesDirs,
+  });
+
+  generateTable({ entries, totalSize });
 
   const answer = await prompt(
     "🙋 Do you want to delete the above folders? (yes/no): ",
   );
 
-  if (answer.toLowerCase() !== "yes" || answer.toLowerCase() !== "y") {
+  if (answer.toLowerCase() !== "yes" && answer.toLowerCase() !== "y") {
     console.log("👍 No worries, no node_modules folders were deleted!");
     return;
   }
 
   let deletedFoldersCounter = 0;
-  for (const nodeModulesDir of nodeModulesDirs) {
-    await fs.promises.rm(nodeModulesDir, { recursive: true });
+  for (const entry of entries) {
+    await fs.promises.rm(entry.path, { recursive: true });
     deletedFoldersCounter++;
     process.stdout.write(
-      `\r🗑️  Deleting node_modules folders (${deletedFoldersCounter}/${nodeModulesDirs.length})...`,
+      `\r🗑️  Deleting node_modules folders (${deletedFoldersCounter}/${entries.length})...`,
     );
   }
   console.log();
   console.log(
     `🤙 All specified node_modules folders have been deleted. Total removed size: ${unitsFormatter(
-      totalSizeInBytes,
+      totalSize,
     )}`,
   );
 }
