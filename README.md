@@ -22,3 +22,20 @@ npx node-modules-cleanup@latest ./
 # Find all node_modules in a specific directory
 npx node-modules-cleanup@latest ~/Desktop/projects
 ```
+
+## Development
+
+This project is build using [Bun](https://bun.sh/), to install it run the following command:
+
+```bash
+curl -fsSL https://bun.sh/install | bash
+```
+
+After that you can use these commands:
+
+```bash
+$ bun run dev # For local development
+$ bun run test # Runs the test suite
+$ bun run lint # Run ESLint
+$ bun run type-check # Runs the TypeScript checks
+```

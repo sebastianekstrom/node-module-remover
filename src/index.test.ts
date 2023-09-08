@@ -46,7 +46,7 @@ describe("main", () => {
     process.argv = ["path1", "path2"]; // mimic node and script paths
     await main();
     expect(logSpy).toHaveBeenCalledWith(
-      "❌ Please provide a path, e.g './' for the current folder",
+      "❌ Please provide a path. E.g './' for the current folder",
     );
   });
 

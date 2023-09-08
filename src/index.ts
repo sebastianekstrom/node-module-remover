@@ -11,7 +11,7 @@ export async function main() {
   const args = process.argv.slice(2);
 
   if (args.length < 1) {
-    console.log("❌ Please provide a path, e.g './' for the current folder");
+    console.log("❌ Please provide a path. E.g './' for the current folder");
     return;
   }
 

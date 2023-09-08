@@ -1,4 +1,4 @@
-import readline from "readline";
+import readline from "node:readline";
 
 export async function prompt(question: string): Promise<string> {
   const rl = readline.createInterface({
