@@ -1,8 +1,8 @@
 {
   "name": "node-modules-cleanup",
-  "version": "1.0.38",
+  "version": "1.0.39",
   "description": "Find and delete all node_module folders",
-  "main": "dist/src/index.js",
+  "main": "dist/index.mjs",
   "repository": {
     "type": "git",
     "url": "https://github.com/sebastianekstrom/node-module-remover.git"
@@ -26,7 +26,7 @@
     "test": "jest"
   },
   "bin": {
-    "node-modules-cleanup": "./dist/src/index.mjs"
+    "node-modules-cleanup": "./dist/index.mjs"
   },
   "devDependencies": {
     "@types/cli-table": "^0.3.1",
