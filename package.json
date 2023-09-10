@@ -34,6 +34,7 @@
     "@types/jest": "^29.5.3",
     "@types/node": "^20.4.10",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "bun-types": "latest",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^9.0.0",
     "eslint-config-standard-with-typescript": "^37.0.0",
