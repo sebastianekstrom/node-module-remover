@@ -18,15 +18,15 @@
   },
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node ./src/index.ts",
+    "dev": "bun --hot ./src/index.ts",
     "lint": "npx eslint ./src/*.ts ./src/**/*.ts --max-warnings=0",
     "type-check": "tsc",
-    "build": "npx tsc && npm run post-build",
-    "post-build": "node dist/scripts/add-shebang.js",
+    "build": "bun build ./src/index.ts --outdir ./dist --target node && bun run post-build",
+    "post-build": "bun scripts/convertToMjs.ts",
     "test": "jest"
   },
   "bin": {
-    "node-modules-cleanup": "./dist/src/index.js"
+    "node-modules-cleanup": "./dist/src/index.mjs"
   },
   "devDependencies": {
     "@types/cli-table": "^0.3.1",
