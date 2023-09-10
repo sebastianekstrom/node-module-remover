@@ -22,7 +22,7 @@
     "lint": "npx eslint ./src/*.ts ./src/**/*.ts --max-warnings=0",
     "type-check": "tsc",
     "build": "bun build ./src/index.ts --outdir ./dist --target node && bun run post-build",
-    "post-build": "bun scripts/convertToMjs.ts",
+    "post-build": "bun scripts/post-build.ts",
     "test": "jest"
   },
   "bin": {
