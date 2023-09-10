@@ -23,7 +23,7 @@
     "type-check": "tsc",
     "build": "bun build ./src/index.ts --outdir ./dist --target node && bun run post-build",
     "post-build": "bun scripts/post-build.ts",
-    "test": "jest"
+    "test": "bun test"
   },
   "bin": {
     "node-modules-cleanup": "./dist/index.mjs"
