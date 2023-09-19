@@ -4,6 +4,8 @@ import { prompt } from "./utils/prompt";
 import { findNodeModulesFolders } from "./utils/findNodeModulesFolders";
 import { getDirectorySize } from "./utils/getDirectorySize";
 import { generateTable } from "./utils/generateTable";
+import { deleteFolders } from "./utils/deleteFolders";
+import { unitsFormatter } from "./utils/unitsFormatter";
 
 jest.mock("fs", () => {
   return {
@@ -17,6 +19,8 @@ jest.mock("./utils/prompt");
 jest.mock("./utils/findNodeModulesFolders");
 jest.mock("./utils/getDirectorySize");
 jest.mock("./utils/generateTable");
+jest.mock("./utils/deleteFolders");
+jest.mock("./utils/unitsFormatter");
 
 describe("main", () => {
   let logSpy: jest.SpyInstance;
@@ -83,6 +87,23 @@ describe("main", () => {
     expect(generateTable).toHaveBeenCalled();
     expect(prompt).toHaveBeenCalledWith(
       "🙋 Do you want to delete the above folders? (yes/no): ",
+    );
+  });
+
+  it("should log the total removed size after deleting folders", async () => {
+    process.argv = ["path1", "path2", "./sample"];
+    (findNodeModulesFolders as jest.Mock).mockResolvedValue([
+      "/path/to/node_modules",
+    ]);
+    (prompt as jest.Mock).mockResolvedValue("yes");
+    (unitsFormatter as jest.Mock).mockReturnValue("1 GB");
+
+    await main();
+
+    expect(deleteFolders).toHaveBeenCalled();
+    expect(logSpy).toHaveBeenCalledWith();
+    expect(logSpy).toHaveBeenCalledWith(
+      "🤙 All specified node_modules folders have been deleted. Total removed size: 1 GB",
     );
   });
 });

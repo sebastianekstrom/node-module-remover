@@ -32,7 +32,7 @@
   "devDependencies": {
     "@types/cli-table": "^0.3.1",
     "@types/jest": "^29.5.3",
-    "@types/node": "^20.4.10",
+    "@types/node": "^20.6.2",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^9.0.0",
