@@ -1,0 +1,17 @@
+name: 🗑️ Check for unused code
+run-name: Unused code run
+on: [push]
+jobs:
+  linting:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v2
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: Install Dependencies
+        run: bun install
+
+      - name: Check for unused code
+        run: bun run test:unused-code
