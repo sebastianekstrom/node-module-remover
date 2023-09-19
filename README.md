@@ -27,7 +27,7 @@ npx node-modules-cleanup@latest ~/Desktop/projects
 
 ### Install Bun
 
-This project is build using [Bun](https://bun.sh/), to install it run the following command:
+This project is built with [Bun](https://bun.sh/), to install it run the following command:
 
 ```bash
 curl -fsSL https://bun.sh/install | bash
@@ -44,8 +44,10 @@ $ bun install
 After that you can use these commands:
 
 ```bash
-$ bun run dev # For local development
-$ bun run test # Runs the test suite
-$ bun run lint # Run ESLint
-$ bun run type-check # Runs the TypeScript checks
+$ bun run dev                 # For local development
+$ bun run test:js             # Runs the test suite
+$ bun run test:unused-code    # Runs the test suite
+$ bun run lint                # Run ESLint
+$ bun run type-check          # Runs the TypeScript checks
+$ bun run build               # Builds the package
 ```

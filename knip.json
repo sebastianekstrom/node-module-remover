@@ -1,0 +1,4 @@
+{
+  "ignore": ["scripts/post-build.ts"],
+  "ignoreDependencies": ["prettier"]
+}
