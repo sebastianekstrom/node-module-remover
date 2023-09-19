@@ -3,6 +3,7 @@ import { main } from "./index";
 import { prompt } from "./utils/prompt";
 import { findNodeModulesFolders } from "./utils/findNodeModulesFolders";
 import { getDirectorySize } from "./utils/getDirectorySize";
+import { generateTable } from "./utils/generateTable";
 
 jest.mock("fs", () => {
   return {
@@ -40,6 +41,7 @@ describe("main", () => {
     (findNodeModulesFolders as jest.Mock).mockReset();
     (getDirectorySize as jest.Mock).mockReset();
     (prompt as jest.Mock).mockReset();
+    (generateTable as jest.Mock).mockReset();
   });
 
   it("should prompt user for path if no argument provided", async () => {
@@ -67,6 +69,20 @@ describe("main", () => {
     await main();
     expect(logSpy).toHaveBeenCalledWith(
       "👍 No worries, no node_modules folders were deleted!",
+    );
+  });
+
+  it("should generate table and prompt for deletion", async () => {
+    process.argv = ["path1", "path2", "./sample"];
+    (findNodeModulesFolders as jest.Mock).mockResolvedValue([
+      "/path/to/node_modules",
+    ]);
+    (prompt as jest.Mock).mockResolvedValue("no");
+
+    await main();
+    expect(generateTable).toHaveBeenCalled();
+    expect(prompt).toHaveBeenCalledWith(
+      "🙋 Do you want to delete the above folders? (yes/no): ",
     );
   });
 });
