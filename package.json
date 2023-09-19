@@ -1,6 +1,6 @@
 {
   "name": "node-modules-cleanup",
-  "version": "1.0.44",
+  "version": "1.0.45",
   "description": "Find and delete all node_module folders",
   "main": "dist/index.mjs",
   "repository": {
