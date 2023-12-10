@@ -1,25 +1,29 @@
-import * as path from "path";
-
-import { prompt } from "./utils/prompt";
+import { intro, outro, confirm, isCancel, cancel, text } from "@clack/prompts";
 import { findNodeModulesFolders } from "./utils/findNodeModulesFolders";
 import { unitsFormatter } from "./utils/unitsFormatter";
 import { generateTable } from "./utils/generateTable";
 import { calculateSizeOfNodeModulesDirs } from "./utils/calculateSizeOfNodeModulesDirs";
 import { deleteFolders } from "./utils/deleteFolders";
+import { setTimeout as sleep } from "node:timers/promises";
 
 export async function main() {
-  const args = process.argv.slice(2);
+  console.log();
+  intro("🗑️ node-modules-cleanup");
 
-  if (args.length < 1) {
-    console.log("❌ Please provide a path. E.g './' for the current folder");
-    return;
+  const targetDir = await text({
+    message: "Where should I look for node_modules folders?",
+    placeholder: "./",
+  });
+
+  if (isCancel(targetDir)) {
+    cancel("Operation cancelled");
+    return process.exit(0);
   }
 
-  const targetDir = path.resolve(args[0]);
   const nodeModulesDirs = await findNodeModulesFolders(targetDir);
   if (nodeModulesDirs.length === 0) {
-    console.log("❌ No 'node_modules' folders found.");
-    return;
+    cancel("❌ No 'node_modules' folders found.");
+    return process.exit(0);
   }
 
   const { entries, totalSize } = calculateSizeOfNodeModulesDirs({
@@ -28,23 +32,23 @@ export async function main() {
 
   generateTable({ entries, totalSize });
 
-  const answer = await prompt(
-    "🙋 Do you want to delete the above folders? (yes/no): ",
-  );
+  const shouldContinue = await confirm({
+    message: "Do you want to delete these folders?",
+  });
 
-  if (answer.toLowerCase() !== "yes" && answer.toLowerCase() !== "y") {
-    console.log("👍 No worries, no node_modules folders were deleted!");
-    return;
+  if (isCancel(shouldContinue) || !shouldContinue) {
+    cancel("Got it! No node_modules folders removed");
+    return process.exit(0);
   }
 
   await deleteFolders(entries);
 
-  console.log();
-  console.log(
+  outro(
     `🤙 All specified node_modules folders have been deleted. Total removed size: ${unitsFormatter(
       totalSize,
     )}`,
   );
+  await sleep(1000);
 }
 
 main().catch((error) => {
