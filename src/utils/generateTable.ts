@@ -1,5 +1,6 @@
 import Table from "cli-table";
 import { unitsFormatter } from "./unitsFormatter";
+import chalk from "chalk";
 
 interface Entry {
   path: string;
@@ -14,18 +15,23 @@ export const generateTable = ({
   totalSize: number;
 }) => {
   const table = new Table({
-    head: ["Path", "Size"],
+    head: ["Location", "Size"],
     colWidths: [100, 15],
     style: {
       head: ["green", "bold"],
     },
   });
 
-  for (const entry of entries) {
-    table.push([entry.path, `${unitsFormatter(entry.size)}`]);
+  const sortedEntries = entries.sort((a, b) => b.size - a.size);
+
+  for (const entry of sortedEntries) {
+    table.push([entry.path, chalk.bold(`${unitsFormatter(entry.size)}`)]);
   }
 
   console.log();
-  table.push(["Total size", `${unitsFormatter(totalSize)}`]);
+  table.push([
+    chalk.green.bold("Total size"),
+    chalk.green.bold(`${unitsFormatter(totalSize)}`),
+  ]);
   console.log(table.toString());
 };

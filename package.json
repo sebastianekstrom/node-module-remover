@@ -19,6 +19,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "bun --hot ./src/index.ts",
+    "create-mocks": "bun ./scripts/mocks/generateMockFiles.ts",
     "lint": "npx eslint ./src/*.ts ./src/**/*.ts --max-warnings=0",
     "type-check": "tsc",
     "build": "bun build ./src/index.ts --outdir ./dist --target node && bun run post-build",
@@ -47,6 +48,7 @@
     "typescript": "*"
   },
   "dependencies": {
+    "chalk": "^5.3.0",
     "cli-table": "^0.3.11"
   }
 }
