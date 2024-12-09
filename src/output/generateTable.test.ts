@@ -2,8 +2,8 @@ import { generateTable } from "./generateTable";
 import { getDirectorySize } from "../core/getDirectorySize";
 import { unitsFormatter } from "../formatters/unitsFormatter";
 
-jest.mock("./getDirectorySize");
-jest.mock("./unitsFormatter");
+jest.mock("../core/getDirectorySize");
+jest.mock("../formatters/unitsFormatter");
 
 describe("generateTable", () => {
   let logSpy: jest.SpyInstance;
