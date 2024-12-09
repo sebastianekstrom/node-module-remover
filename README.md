@@ -1,4 +1,4 @@
-# 🗑️ node-modules-cleanup
+# 🧹 node-modules-cleanup
 
 [![npm version](https://badge.fury.io/js/node-modules-cleanup.svg)](https://badge.fury.io/js/node-modules-cleanup)
 [![codecov](https://codecov.io/gh/sebastianekstrom/node-module-remover/graph/badge.svg?token=GOXVSJ3VQ0)](https://codecov.io/gh/sebastianekstrom/node-module-remover)
@@ -7,13 +7,13 @@ A simple CLI to bulk remove `node_modules` folders and free up some of that prec
 
 ![CLI_V6](https://imgur.com/eF26RAS.gif)
 
-## Usage
+## 🚀 Usage
 
 ```bash
 npx node-modules-cleanup@latest <path>
 ```
 
-## Examples
+## 📚 Examples
 
 ```bash
 # Find all node_modules in the current directory
@@ -26,14 +26,15 @@ npx node-modules-cleanup@latest ~/Desktop/projects
 npx node-modules-cleanup@latest ~/Desktop/projects --skip-confirmation
 ```
 
-## Usage
+## 📝 Arguments
 
-| Argument            | Description                               |
-| ------------------- | ----------------------------------------- |
-| --help              | Show help information                     |
-| --skip-confirmation | Skip confirmation before deleting folders |
+| Argument              | Description                                   | Required |
+| --------------------- | --------------------------------------------- | -------- |
+| `<path>`              | The path to search for `node_modules` folders | Yes      |
+| `--help`              | Show help information                         | No       |
+| `--skip-confirmation` | Skip confirmation before deleting folders     | No       |
 
-## Development
+## 💻 Development
 
 ### Install Bun
 
@@ -53,7 +54,7 @@ bun install
 
 ### Generate mocked `node_modules` folders
 
-For easier development, a script is available that will generate multiple mocked`node_modules` folders inside of `./mock`. These will then be populated with dummy files that ranges in sizes.
+For easier development, a script is available that will generate multiple mocked`node_modules` folders inside of `./mock`. These will then be populated with dummy files that ranges in size.
 
 ```bash
 bun run create-mocks
@@ -64,7 +65,7 @@ bun run create-mocks
 The following command will then execute the script.
 
 ```bash
-bun run dev ./mock          # Or any othe path
+bun run dev ./mock          # Or any other path
 ```
 
 ### Useful commands during development
