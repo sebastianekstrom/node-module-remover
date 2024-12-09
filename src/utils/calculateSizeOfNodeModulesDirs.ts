@@ -1,4 +1,5 @@
 import { getDirectorySize } from "./getDirectorySize";
+import { generatePrefix } from "./logger";
 
 export const calculateSizeOfNodeModulesDirs = ({
   nodeModulesDirs,
@@ -18,7 +19,9 @@ export const calculateSizeOfNodeModulesDirs = ({
       size: dirSize,
     });
     process.stdout.write(
-      `\r🕵🏻  Locating node_modules folders (found ${counter})...`,
+      `\r${generatePrefix(
+        "info",
+      )} Locating node_modules folders (found ${counter})...`,
     );
   }
 

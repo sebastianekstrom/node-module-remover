@@ -1,7 +1,13 @@
-// console.log's are outputted during tests, which makes the test run bloated
-jest.spyOn(global.console, "log").mockImplementationOnce((message) => {
-  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-  if (message && !message.includes("Please provide a path")) {
-    global.console.warn(message);
-  }
+jest.mock("chalk", () => {
+  const createChainedMock = () => {
+    const mock = jest.fn((text) => text);
+    mock.red = mock;
+    mock.green = mock;
+    mock.blue = mock;
+    mock.bold = mock;
+    mock.italic = mock;
+    return mock;
+  };
+
+  return createChainedMock();
 });

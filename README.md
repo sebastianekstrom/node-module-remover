@@ -21,7 +21,17 @@ npx node-modules-cleanup@latest ./
 
 # Find all node_modules in a specific directory
 npx node-modules-cleanup@latest ~/Desktop/projects
+
+# Skip confirmation of deleting folders
+npx node-modules-cleanup@latest ~/Desktop/projects --skip-confirmation
 ```
+
+## Usage
+
+| Argument            | Description                               |
+| ------------------- | ----------------------------------------- |
+| --help              | Show help information                     |
+| --skip-confirmation | Skip confirmation before deleting folders |
 
 ## Development
 
@@ -50,4 +60,5 @@ $ bun run test:unused-code    # Runs the test suite
 $ bun run lint                # Run ESLint
 $ bun run type-check          # Runs the TypeScript checks
 $ bun run build               # Builds the package
+$ bun run create-mocks        # Creates mock files for easier testing
 ```

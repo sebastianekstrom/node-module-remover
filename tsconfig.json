@@ -10,5 +10,5 @@
     "moduleResolution": "node",
     "types": ["node", "jest"]
   },
-  "include": ["src/**/*", "scripts/**/*"]
+  "include": ["src/**/*", "scripts/**/*", "scripts/generateMockFiles.ts"]
 }

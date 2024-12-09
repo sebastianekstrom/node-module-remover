@@ -32,7 +32,7 @@ describe("deleteFolders", () => {
     expect(fs.promises.rm).toHaveBeenCalledWith("path1", { recursive: true });
     expect(fs.promises.rm).toHaveBeenCalledWith("path2", { recursive: true });
     expect(stdoutSpy).toHaveBeenCalledWith(
-      "\r🗑️  Deleting node_modules folders (2/2)...",
+      "\r◉ Deleting node_modules folders (2/2)...",
     );
   });
 });

@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import { generatePrefix } from "./logger";
 
 export interface Entry {
   path: string;
@@ -10,8 +11,11 @@ export const deleteFolders = async (entries: Entry[]) => {
   for (const entry of entries) {
     await fs.promises.rm(entry.path, { recursive: true });
     deletedFoldersCounter++;
-    process.stdout.write(
-      `\r🗑️  Deleting node_modules folders (${deletedFoldersCounter}/${entries.length})...`,
-    );
+    const message = `\r${generatePrefix(
+      "info",
+    )} Deleting node_modules folders (${deletedFoldersCounter}/${
+      entries.length
+    })...`;
+    process.stdout.write(message);
   }
 };
