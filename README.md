@@ -5,7 +5,7 @@
 
 A simple CLI to bulk remove `node_modules` folders and free up some of that precious disk space.
 
-![CLI_V6](https://i.imgur.com/JJ0zYzx.gif)
+![CLI_V6](https://imgur.com/eF26RAS.gif)
 
 ## Usage
 
