@@ -32,6 +32,7 @@ npx node-modules-cleanup@latest ~/Desktop/projects --skip-confirmation
 | --------------------- | --------------------------------------------- | -------- |
 | `<path>`              | The path to search for `node_modules` folders | Yes      |
 | `--help`              | Show help information                         | No       |
+| `--version`           | Show package version                          | No       |
 | `--skip-confirmation` | Skip confirmation before deleting folders     | No       |
 
 ## 💻 Development

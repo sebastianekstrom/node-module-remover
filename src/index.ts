@@ -7,12 +7,20 @@ import { generateTable } from "./output/generateTable";
 import { calculateSizeOfNodeModulesDirs } from "./core/calculateSizeOfNodeModulesDirs";
 import { deleteFolders } from "./core/deleteFolders";
 import chalk from "chalk";
+import type { PackageJson } from "type-fest";
 
 import { generatePrefix, logger } from "./output/logger";
 import { formatExecutionTime } from "./formatters/formatExecutionTime";
 
+import packageJsonRaw from "../package.json";
+
+const packageJson: PackageJson = packageJsonRaw as PackageJson;
+
 const AVAILABLE_ARGS = {
   "--help": "Show help information",
+  "--h": "Show help information",
+  "--version": "Show package version",
+  "--v": "Show package version",
   "--skip-confirmation": "Skip confirmation before deleting folders",
 };
 
@@ -27,18 +35,25 @@ const displayHelp = () => {
 
 const parseArgs = (args: string[]) => {
   return {
-    help: args.includes("--help"),
+    help: args.includes("--help") || args.includes("--h"),
     empty: args.length < 1,
     skipConfirmation: args.includes("--skip-confirmation"),
+    version: args.includes("--version") || args.includes("--v"),
   };
 };
 
 export async function main() {
   const args = process.argv.slice(2);
-  const { help, empty, skipConfirmation } = parseArgs(args);
+  const { help, empty, skipConfirmation, version } = parseArgs(args);
 
   if (help) {
     displayHelp();
+    process.exit(0);
+  }
+
+  if (version) {
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+    console.log(`Version: ${packageJson.version}`);
     process.exit(0);
   }
 

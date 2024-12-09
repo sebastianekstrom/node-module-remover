@@ -45,6 +45,7 @@
     "knip": "^2.25.2",
     "prettier": "3.0.1",
     "ts-jest": "^29.1.1",
+    "type-fest": "^4.30.0",
     "typescript": "*"
   },
   "dependencies": {
