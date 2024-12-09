@@ -1,5 +1,5 @@
 import * as fs from "fs";
-import { generatePrefix } from "./logger";
+import { generatePrefix } from "../output/logger";
 
 export interface Entry {
   path: string;

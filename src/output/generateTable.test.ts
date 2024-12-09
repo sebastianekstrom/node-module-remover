@@ -1,6 +1,6 @@
 import { generateTable } from "./generateTable";
-import { getDirectorySize } from "./getDirectorySize";
-import { unitsFormatter } from "./unitsFormatter";
+import { getDirectorySize } from "../core/getDirectorySize";
+import { unitsFormatter } from "../formatters/unitsFormatter";
 
 jest.mock("./getDirectorySize");
 jest.mock("./unitsFormatter");

@@ -1,5 +1,5 @@
 import Table from "cli-table";
-import { unitsFormatter } from "./unitsFormatter";
+import { unitsFormatter } from "../formatters/unitsFormatter";
 import chalk from "chalk";
 
 interface Entry {

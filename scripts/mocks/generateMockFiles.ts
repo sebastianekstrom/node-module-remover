@@ -4,8 +4,8 @@ import chalk from "chalk";
 import { adjectives, animals, subjectives } from "./dictionary";
 
 const MOCK_LOCATION = "mock";
-const MIN_FILE_SIZE_MB = 500;
-const MAX_FILE_SIZE_MB = 800;
+const MIN_FILE_SIZE_MB = 50;
+const MAX_FILE_SIZE_MB = 100;
 const MIN_FOLDERS_CREATED = 10;
 const MAX_FOLDERS_CREATE = 20;
 
