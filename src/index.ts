@@ -25,15 +25,24 @@ const displayHelp = () => {
   console.log("");
 };
 
+const parseArgs = (args: string[]) => {
+  return {
+    help: args.includes("--help"),
+    empty: args.length < 1,
+    skipConfirmation: args.includes("--skip-confirmation"),
+  };
+};
+
 export async function main() {
   const args = process.argv.slice(2);
+  const { help, empty, skipConfirmation } = parseArgs(args);
 
-  if (args.includes("--help")) {
+  if (help) {
     displayHelp();
     process.exit(0);
   }
 
-  if (args.length < 1) {
+  if (empty) {
     logger({
       prefix: "error",
       message: `Path not provided. Please provide a path, e.g ${chalk.italic(
@@ -61,7 +70,6 @@ export async function main() {
 
   generateTable({ entries, totalSize });
 
-  const skipConfirmation = args.includes("--skip-confirmation");
   if (!skipConfirmation) {
     const answer = await prompt(
       `${generatePrefix("info")} Do you want to ${chalk.bold.red(
