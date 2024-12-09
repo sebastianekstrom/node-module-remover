@@ -48,17 +48,32 @@ curl -fsSL https://bun.sh/install | bash
 To install the dependencies, run the following command:
 
 ```bash
-$ bun install
+bun install
 ```
 
-After that you can use these commands:
+### Generate mocked `node_modules` folders
+
+For easier development, a script is available that will generate multiple mocked`node_modules` folders inside of `./mock`. These will then be populated with dummy files that ranges in sizes.
 
 ```bash
-$ bun run dev                 # For local development
-$ bun run test:js             # Runs the test suite
-$ bun run test:unused-code    # Runs the test suite
-$ bun run lint                # Run ESLint
-$ bun run type-check          # Runs the TypeScript checks
-$ bun run build               # Builds the package
-$ bun run create-mocks        # Creates mock files for easier testing
+bun run create-mocks
+```
+
+### Run the script
+
+The following command will then execute the script.
+
+```bash
+bun run dev ./mock          # Or any othe path
+```
+
+### Useful commands during development
+
+```bash
+bun run dev                 # For local development
+bun run test:js             # Runs the test suite
+bun run test:unused-code    # Check for unused code
+bun run lint                # Run ESLint
+bun run type-check          # Runs the TypeScript checks
+bun run build               # Builds the package
 ```
