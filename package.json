@@ -5,16 +5,16 @@
   "main": "dist/index.mjs",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sebastianekstrom/node-module-remover.git"
+    "url": "https://github.com/sebastianekstrom/node-modules-cleanup.git"
   },
   "keywords": [
     "node_modules",
     "remove"
   ],
-  "homepage": "https://github.com/sebastianekstrom/node-module-remover#readme",
+  "homepage": "https://github.com/sebastianekstrom/node-modules-cleanup#readme",
   "author": "Sebastian Ekström",
   "bugs": {
-    "url": "https://github.com/sebastianekstrom/node-module-remover/issues"
+    "url": "https://github.com/sebastianekstrom/node-modules-cleanup/issues"
   },
   "license": "MIT",
   "scripts": {
