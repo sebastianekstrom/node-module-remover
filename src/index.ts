@@ -1,15 +1,15 @@
 import * as path from "path";
 
-import { prompt } from "./utils/prompt";
-import { findNodeModulesFolders } from "./utils/findNodeModulesFolders";
-import { unitsFormatter } from "./utils/unitsFormatter";
-import { generateTable } from "./utils/generateTable";
-import { calculateSizeOfNodeModulesDirs } from "./utils/calculateSizeOfNodeModulesDirs";
-import { deleteFolders } from "./utils/deleteFolders";
+import { prompt } from "./output/prompt";
+import { findNodeModulesFolders } from "./core/findNodeModulesFolders";
+import { unitsFormatter } from "./formatters/unitsFormatter";
+import { generateTable } from "./output/generateTable";
+import { calculateSizeOfNodeModulesDirs } from "./core/calculateSizeOfNodeModulesDirs";
+import { deleteFolders } from "./core/deleteFolders";
 import chalk from "chalk";
 
-import { generatePrefix, logger } from "./utils/logger";
-import { formatExecutionTime } from "./utils/formatExecutionTime";
+import { generatePrefix, logger } from "./output/logger";
+import { formatExecutionTime } from "./formatters/formatExecutionTime";
 
 const AVAILABLE_ARGS = {
   "--help": "Show help information",

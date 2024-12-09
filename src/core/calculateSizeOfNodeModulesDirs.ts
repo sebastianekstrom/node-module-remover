@@ -1,5 +1,5 @@
 import { getDirectorySize } from "./getDirectorySize";
-import { generatePrefix } from "./logger";
+import { generatePrefix } from "../output/logger";
 
 export const calculateSizeOfNodeModulesDirs = ({
   nodeModulesDirs,
