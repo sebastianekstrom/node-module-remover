@@ -1,11 +1,23 @@
-# 🧹 node-modules-cleanup
+![Logo of node-modules-cleanup!](https://github.com/user-attachments/assets/fb78f9f1-2caf-4bc0-a753-2b1cec1fee8d)
 
-[![npm version](https://badge.fury.io/js/node-modules-cleanup.svg)](https://badge.fury.io/js/node-modules-cleanup)
-[![codecov](https://codecov.io/gh/sebastianekstrom/node-module-remover/graph/badge.svg?token=GOXVSJ3VQ0)](https://codecov.io/gh/sebastianekstrom/node-module-remover)
+<p align="center" style="margin-bottom: 5px;">
+  A simple CLI to bulk remove <em>node_modules</em> folders and free up some of that precious disk space.
+</p>
 
-A simple CLI to bulk remove `node_modules` folders and free up some of that precious disk space.
+<p align="center">
+  <img src="https://badge.fury.io/js/node-modules-cleanup.svg" alt="" />
+  <img src="https://codecov.io/gh/sebastianekstrom/node-module-remover/graph/badge.svg?token=GOXVSJ3VQ0" alt="" />
+</p>
 
-![CLI_V6](https://imgur.com/eF26RAS.gif)
+---
+
+<p align="center">
+  ⭐️ <a href="#-usage">Usage</a> • <a href="#-examples">Examples</a> • <a href="#-arguments">Arguments</a> • <a href="#-development">Development</a> ⭐️
+</p>
+
+---
+
+![CLI_V6](https://github.com/user-attachments/assets/fa0a10dc-59fa-4a03-a652-ffdd7eda4ddd)
 
 ## 🚀 Usage
 
