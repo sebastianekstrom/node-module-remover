@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <img src="https://badge.fury.io/js/node-modules-cleanup.svg" alt="" />
+  <img src="https://badge.fury.io/js/node-modules-cleanup.svg?v=1" alt="" />
   <img src="https://codecov.io/gh/sebastianekstrom/node-module-remover/graph/badge.svg?token=GOXVSJ3VQ0" alt="" />
 </p>
 
