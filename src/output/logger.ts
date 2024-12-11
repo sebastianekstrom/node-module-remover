@@ -28,9 +28,5 @@ interface LogMessage {
 }
 
 export const logger = ({ message, prefix = "default" }: LogMessage) => {
-  if (prefix === undefined) {
-    return message;
-  }
-
   console.log(`${generatePrefix(prefix)} ${message}`);
 };

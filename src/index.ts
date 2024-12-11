@@ -139,7 +139,11 @@ export async function main() {
   process.exit(0);
 }
 
-main().catch((error) => {
-  console.error("An error occurred:", error);
-  process.exit(1);
-});
+// This is a bit of an annoyance, but it's the best way I found to run the main function with Jest
+// Haters gonna hate
+if (process.env.NODE_ENV !== "test") {
+  main().catch((error) => {
+    console.error("An error occurred:", error);
+    process.exit(1);
+  });
+}
