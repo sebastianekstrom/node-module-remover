@@ -30,6 +30,10 @@ export const generateTable = ({
 
   console.log();
   table.push([
+    chalk.green.bold("Total folders"),
+    chalk.green.bold(entries.length),
+  ]);
+  table.push([
     chalk.green.bold("Total size"),
     chalk.green.bold(`${unitsFormatter(totalSize)}`),
   ]);

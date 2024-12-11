@@ -1,6 +1,6 @@
 import chalk from "chalk";
 
-type Prefix = "default" | "info" | "error" | "none";
+type Prefix = "default" | "info" | "error" | "warning" | "none";
 
 export const generatePrefix = (type?: Prefix) => {
   if (type === "default") {
@@ -13,6 +13,10 @@ export const generatePrefix = (type?: Prefix) => {
 
   if (type === "info") {
     return chalk.blue("◉");
+  }
+
+  if (type === "warning") {
+    return chalk.yellow("◉");
   }
 
   if (type === "none") {

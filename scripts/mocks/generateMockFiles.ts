@@ -43,6 +43,33 @@ const generateMockFiles = () => {
       fs.mkdirSync(nodeModulesDir);
     }
 
+    // Create 20 sibling node_modules folders
+    Array.from({ length: 2 }).forEach((_, index) => {
+      const siblingNodeModulesDir = path.join(tmpDir, `node_modules_${index}`);
+      if (!fs.existsSync(siblingNodeModulesDir)) {
+        fs.mkdirSync(siblingNodeModulesDir);
+      }
+
+      // In each sibling node_modules folder, create 10 tmp_X folders
+      Array.from({ length: 10 }).forEach((_, tmpIndex) => {
+        const tmpFolder = path.join(siblingNodeModulesDir, `tmp_${tmpIndex}`);
+        if (!fs.existsSync(tmpFolder)) {
+          fs.mkdirSync(tmpFolder);
+        }
+
+        // In each tmp_X folder, create 40 empty node_modules folders
+        Array.from({ length: 40 }).forEach((_, nmIndex) => {
+          const nestedNodeModulesDir = path.join(
+            tmpFolder,
+            `node_modules_${nmIndex}`,
+          );
+          if (!fs.existsSync(nestedNodeModulesDir)) {
+            fs.mkdirSync(nestedNodeModulesDir);
+          }
+        });
+      });
+    });
+
     const fileSizeMB =
       Math.floor(Math.random() * (MAX_FILE_SIZE_MB - MIN_FILE_SIZE_MB + 1)) +
       MIN_FILE_SIZE_MB;

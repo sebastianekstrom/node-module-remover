@@ -1,16 +1,29 @@
-import { execSync } from "node:child_process";
+import * as fs from "fs";
+import * as path from "path";
 
 export function getDirectorySize(dirPath: string): number {
-  try {
-    const sizeInBlocks = parseInt(
-      execSync(`du -s "${dirPath}" | cut -f1`).toString().trim(),
-      10,
-    );
+  let totalSize = 0;
 
-    const sizeInBytes = sizeInBlocks * 512;
-    return sizeInBytes;
-  } catch (err) {
-    console.error(`Error calculating size for directory ${dirPath}:`, err);
+  function calculateSize(directory: string) {
+    const entries = fs.readdirSync(directory, { withFileTypes: true });
+
+    for (const entry of entries) {
+      const fullPath = path.join(directory, entry.name);
+
+      if (entry.isDirectory()) {
+        calculateSize(fullPath);
+      } else {
+        const stats = fs.statSync(fullPath);
+        totalSize += stats.size;
+      }
+    }
+  }
+
+  try {
+    calculateSize(dirPath);
+  } catch {
     return 0;
   }
+
+  return totalSize;
 }
