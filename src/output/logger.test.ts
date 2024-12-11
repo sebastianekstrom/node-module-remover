@@ -68,6 +68,6 @@ describe("logger", () => {
 
   it("should log message without prefix", () => {
     logger({ message: "No prefix", prefix: "none" });
-    expect(consoleSpy).toHaveBeenCalledWith(` No prefix`);
+    expect(consoleSpy).toHaveBeenCalledWith(" No prefix");
   });
 });

@@ -2,7 +2,7 @@ import { execSync } from "node:child_process";
 
 export function getDirectorySize(dirPath: string): number {
   try {
-    const sizeInBlocks = parseInt(
+    const sizeInBlocks = Number.parseInt(
       execSync(`du -s "${dirPath}" | cut -f1`).toString().trim(),
       10,
     );

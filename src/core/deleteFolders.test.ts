@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs from "node:fs";
 import { deleteFolders } from "./deleteFolders";
 import type { Entry } from "./deleteFolders";
 

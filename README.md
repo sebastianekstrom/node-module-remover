@@ -88,6 +88,6 @@ bun run dev                 # For local development
 bun run test:js             # Runs the test suite
 bun run test:unused-code    # Check for unused code
 bun run lint                # Run ESLint
-bun run type-check          # Runs the TypeScript checks
+bun run tsc                 # Runs the TypeScript checks
 bun run build               # Builds the package
 ```

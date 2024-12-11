@@ -1,5 +1,5 @@
 import { findNodeModulesFolders } from "./findNodeModulesFolders";
-import * as fs from "fs";
+import * as fs from "node:fs";
 
 jest.mock("fs", () => ({
   promises: {

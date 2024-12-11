@@ -1,4 +1,6 @@
-import * as path from "path";
+import path from "node:path";
+import chalk from "chalk";
+import type { PackageJson } from "type-fest";
 
 import { prompt } from "./output/prompt";
 import { findNodeModulesFolders } from "./core/findNodeModulesFolders";
@@ -6,8 +8,6 @@ import { unitsFormatter } from "./formatters/unitsFormatter";
 import { generateTable } from "./output/generateTable";
 import { calculateSizeOfNodeModulesDirs } from "./core/calculateSizeOfNodeModulesDirs";
 import { deleteFolders } from "./core/deleteFolders";
-import chalk from "chalk";
-import type { PackageJson } from "type-fest";
 
 import { generatePrefix, logger } from "./output/logger";
 import { formatExecutionTime } from "./formatters/formatExecutionTime";

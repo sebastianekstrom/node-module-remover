@@ -7,10 +7,7 @@
     "type": "git",
     "url": "https://github.com/sebastianekstrom/node-modules-cleanup.git"
   },
-  "keywords": [
-    "node_modules",
-    "remove"
-  ],
+  "keywords": ["node_modules", "remove"],
   "homepage": "https://github.com/sebastianekstrom/node-modules-cleanup#readme",
   "author": "Sebastian Ekström",
   "bugs": {
@@ -20,8 +17,8 @@
   "scripts": {
     "dev": "bun --hot ./src/index.ts",
     "create-mocks": "bun ./scripts/mocks/generateMockFiles.ts",
-    "lint": "npx eslint ./src/*.ts ./src/**/*.ts --max-warnings=0",
-    "type-check": "tsc",
+    "lint": "biome lint './{src,scripts}/**/*.{ts,js}'",
+    "tsc": "tsc",
     "build": "bun build ./src/index.ts --outdir ./dist --target node && bun run post-build",
     "post-build": "bun scripts/post-build.ts",
     "test:js": "jest",
@@ -31,6 +28,7 @@
     "node-modules-cleanup": "./dist/index.mjs"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "@types/cli-table": "^0.3.1",
     "@types/jest": "^29.5.3",
     "@types/node": "^20.6.2",
