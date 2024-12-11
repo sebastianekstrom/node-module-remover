@@ -6,7 +6,7 @@
 
 <p align="center">
   <img src="https://badge.fury.io/js/node-modules-cleanup.svg?v=3" alt="" />
-  <img src="https://codecov.io/gh/sebastianekstrom/node-module-remover/graph/badge.svg?token=GOXVSJ3VQ0" alt="" />
+  <img src="https://codecov.io/gh/sebastianekstrom/node-modules-cleanup/branch/main/graph/badge.svg?token=GOXVSJ3VQ0" alt=""/>
 </p>
 
 ---
