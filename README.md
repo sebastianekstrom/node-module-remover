@@ -1,4 +1,4 @@
-![Logo of node-modules-cleanup!](https://github.com/user-attachments/assets/fb78f9f1-2caf-4bc0-a753-2b1cec1fee8d)
+![Logo of node-modules-cleanup!](https://github.com/user-attachments/assets/0c76df92-4f9c-4c6a-aadd-bba7d75ef00a)
 
 <p align="center" style="margin-bottom: 5px;">
   A simple CLI to bulk remove <em>node_modules</em> folders and free up some of that precious disk space.
@@ -17,7 +17,7 @@
 
 ---
 
-![CLI_V6](https://github.com/user-attachments/assets/fa0a10dc-59fa-4a03-a652-ffdd7eda4ddd)
+![Frame 22222](https://github.com/user-attachments/assets/5d735d80-7e38-49d6-9ead-85aa5b9331b4)
 
 ## 🚀 Usage
 
