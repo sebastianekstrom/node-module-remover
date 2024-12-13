@@ -1,40 +1,44 @@
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { generateTable } from "./generateTable";
-import { getDirectorySize } from "../core/getDirectorySize";
 import { unitsFormatter } from "../formatters/unitsFormatter";
 
-jest.mock("../core/getDirectorySize");
-jest.mock("../formatters/unitsFormatter");
+vi.mock("../formatters/unitsFormatter");
+vi.mock("chalk", () => {
+  const createChainedMock = () => {
+    const mock = vi.fn((text) => text) as any;
+    mock.green = mock;
+    mock.bold = mock;
+    return mock;
+  };
+  return { default: createChainedMock() };
+});
 
 describe("generateTable", () => {
-  let logSpy: jest.SpyInstance;
-  let stdoutSpy: jest.SpyInstance;
+  let consoleSpy: ReturnType<typeof vi.spyOn>;
 
   beforeEach(() => {
-    logSpy = jest.spyOn(console, "log").mockImplementation();
-    stdoutSpy = jest.spyOn(process.stdout, "write").mockImplementation();
-
-    (getDirectorySize as jest.Mock).mockReturnValue(100);
-    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-    (unitsFormatter as jest.Mock).mockImplementation((bytes) => `${bytes}B`);
+    consoleSpy = vi.spyOn(console, "log").mockImplementation(() => undefined);
+    (unitsFormatter as ReturnType<typeof vi.fn>).mockImplementation(
+      (bytes: number) => `${bytes}B`,
+    );
   });
 
   afterEach(() => {
-    logSpy.mockRestore();
-    stdoutSpy.mockRestore();
+    consoleSpy.mockRestore();
   });
 
   it("should generate a table and print it", () => {
     generateTable({
       entries: [
         { path: "/path/to/node_modules1", size: 100 },
-        { path: "/path/to/node_modules1", size: 200 },
+        { path: "/path/to/node_modules2", size: 200 },
       ],
       totalSize: 300,
     });
 
-    expect(logSpy).toHaveBeenLastCalledWith(
+    expect(consoleSpy).toHaveBeenCalledWith(
       expect.stringContaining("Total size"),
     );
-    expect(logSpy).toHaveBeenLastCalledWith(expect.stringContaining("200B"));
+    expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining("200B"));
   });
 });

@@ -1,16 +1,18 @@
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import chalk from "chalk";
 import { generatePrefix, logger } from "./logger";
 
-jest.mock("chalk", () => {
-  const mock = jest.fn((text) => text) as jest.Mock & {
-    green: jest.Mock;
-    red: jest.Mock;
-    blue: jest.Mock;
+vi.mock("chalk", () => {
+  const createChainedMock = () => {
+    const mock = vi.fn((text) => text) as any;
+    mock.red = mock;
+    mock.green = mock;
+    mock.blue = mock;
+    mock.bold = mock;
+    mock.italic = mock;
+    return mock;
   };
-  mock.green = mock;
-  mock.red = mock;
-  mock.blue = mock;
-  return mock;
+  return { default: createChainedMock() };
 });
 
 describe("generatePrefix", () => {
@@ -41,10 +43,10 @@ describe("generatePrefix", () => {
 });
 
 describe("logger", () => {
-  let consoleSpy: jest.SpyInstance;
+  let consoleSpy: ReturnType<typeof vi.spyOn>;
 
   beforeEach(() => {
-    consoleSpy = jest.spyOn(console, "log").mockImplementation();
+    consoleSpy = vi.spyOn(console, "log").mockImplementation(() => undefined);
   });
 
   afterEach(() => {

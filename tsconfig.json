@@ -8,8 +8,13 @@
     "sourceMap": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "types": ["node", "jest"],
+    "types": ["node"],
     "resolveJsonModule": true
   },
-  "include": ["src/**/*", "tooling/**/*", "tooling/generateMockFiles.ts"]
+  "include": [
+    "src/**/*",
+    "tooling/**/*",
+    "tooling/generateMockFiles.ts",
+    "vitest.config.ts"
+  ]
 }

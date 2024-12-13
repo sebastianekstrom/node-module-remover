@@ -1,22 +1,24 @@
-import fs from "fs";
 import { deleteFolders } from "./deleteFolders";
 import type { Entry } from "./deleteFolders";
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import { fs, vol } from "memfs";
 
-jest.mock("fs", () => {
-  const originalFs = jest.requireActual("fs");
-  return {
-    ...originalFs,
-    promises: {
-      ...originalFs.promises,
-      rm: jest.fn(),
-    },
-  };
-});
+vi.mock("node:fs");
+vi.mock("node:fs/promises");
 
-const stdoutSpy = jest.spyOn(process.stdout, "write").mockImplementation();
+const stdoutSpy = vi
+  .spyOn(process.stdout, "write")
+  .mockImplementation(() => true);
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
+  vol.reset();
+  vol.fromJSON({
+    path1: null,
+    path2: null,
+  });
+
+  vi.spyOn(fs.promises, "rm").mockResolvedValue();
 });
 
 describe("deleteFolders", () => {

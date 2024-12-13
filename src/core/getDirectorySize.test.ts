@@ -1,29 +1,41 @@
+import { describe, it, expect, vi } from "vitest";
 import { getDirectorySize } from "./getDirectorySize";
 import { execSync } from "node:child_process";
 
-jest.mock("node:child_process", () => ({
-  execSync: jest.fn(),
+vi.mock("node:child_process", () => ({
+  execSync: vi.fn(),
 }));
 
 describe("getDirectorySize", () => {
-  it("should return correct size in bytes", () => {
-    (execSync as jest.Mock).mockReturnValue(Buffer.from("1000"));
+  it("should return the correct size in bytes for a given directory", () => {
+    (execSync as ReturnType<typeof vi.fn>).mockReturnValue("100\n");
 
-    const result = getDirectorySize("some-path");
-    expect(result).toBe(512000);
+    const dirPath = "/some/directory";
+    const expectedSizeInBytes = 100 * 512;
+
+    const size = getDirectorySize(dirPath);
+
+    expect(size).toBe(expectedSizeInBytes);
+    expect(execSync).toHaveBeenCalledWith(`du -s "${dirPath}" | cut -f1`);
   });
 
-  it("should return 0 and log error for invalid dir", () => {
-    (execSync as jest.Mock).mockImplementation(() => {
-      throw new Error("some error");
+  it("should return 0 and log an error if execSync throws an error", () => {
+    const consoleErrorSpy = vi
+      .spyOn(console, "error")
+      .mockImplementation(() => {});
+    (execSync as ReturnType<typeof vi.fn>).mockImplementation(() => {
+      throw new Error("Command failed");
     });
 
-    console.error = jest.fn();
-    const result = getDirectorySize("some-invalid-path");
-    expect(result).toBe(0);
-    expect(console.error).toHaveBeenCalledWith(
-      expect.stringContaining("some-invalid-path"),
+    const dirPath = "/some/invalid/directory";
+    const size = getDirectorySize(dirPath);
+
+    expect(size).toBe(0);
+    expect(consoleErrorSpy).toHaveBeenCalledWith(
+      `Error calculating size for directory ${dirPath}:`,
       expect.any(Error),
     );
+
+    consoleErrorSpy.mockRestore();
   });
 });

@@ -5,28 +5,38 @@ import { calculateSizeOfNodeModulesDirs } from "./core/calculateSizeOfNodeModule
 import { deleteFolders } from "./core/deleteFolders";
 import { logger } from "./output/logger";
 
-jest.mock("./output/prompt");
-jest.mock("./core/findNodeModulesFolders");
-jest.mock("./core/calculateSizeOfNodeModulesDirs");
-jest.mock("./core/deleteFolders");
-jest.mock("./output/logger");
+import {
+  describe,
+  it,
+  expect,
+  vi,
+  beforeAll,
+  beforeEach,
+  afterEach,
+} from "vitest";
+
+vi.mock("./output/prompt");
+vi.mock("./core/findNodeModulesFolders");
+vi.mock("./core/calculateSizeOfNodeModulesDirs");
+vi.mock("./core/deleteFolders");
+vi.mock("./output/logger");
 
 describe("main", () => {
-  let logSpy: jest.SpyInstance;
+  let logSpy: ReturnType<typeof vi.spyOn>;
 
   beforeAll(() => {
-    jest.spyOn(process, "exit").mockImplementation((code) => {
+    vi.spyOn(process, "exit").mockImplementation((code) => {
       throw new Error(`process.exit: ${code as number}`);
     });
   });
 
   beforeEach(() => {
-    logSpy = jest.spyOn(console, "log").mockImplementation();
+    logSpy = vi.spyOn(console, "log").mockImplementation(() => undefined);
     process.argv = ["node", "script.js"];
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe("args", () => {
@@ -44,10 +54,12 @@ describe("main", () => {
 
     it("should skip confirmation if --skip-confirmation is passed", async () => {
       process.argv.push("./some/path", "--skip-confirmation");
-      (findNodeModulesFolders as jest.Mock).mockResolvedValue([
+      (findNodeModulesFolders as ReturnType<typeof vi.fn>).mockResolvedValue([
         "/path/to/node_modules",
       ]);
-      (calculateSizeOfNodeModulesDirs as jest.Mock).mockReturnValue({
+      (
+        calculateSizeOfNodeModulesDirs as ReturnType<typeof vi.fn>
+      ).mockReturnValue({
         entries: [{ path: "/path/to/node_modules", size: 100 }],
         totalSize: 100,
       });
@@ -72,7 +84,7 @@ describe("main", () => {
 
   it("should log error and exit when no node_modules folders are found", async () => {
     process.argv.push("./some/path");
-    (findNodeModulesFolders as jest.Mock).mockResolvedValue([]);
+    (findNodeModulesFolders as ReturnType<typeof vi.fn>).mockResolvedValue([]);
     await expect(main()).rejects.toThrow("process.exit: 0");
     expect(logger).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -84,14 +96,16 @@ describe("main", () => {
 
   it("should prompt for confirmation and delete folders", async () => {
     process.argv.push("./some/path");
-    (findNodeModulesFolders as jest.Mock).mockResolvedValue([
+    (findNodeModulesFolders as ReturnType<typeof vi.fn>).mockResolvedValue([
       "/path/to/node_modules",
     ]);
-    (calculateSizeOfNodeModulesDirs as jest.Mock).mockReturnValue({
+    (
+      calculateSizeOfNodeModulesDirs as ReturnType<typeof vi.fn>
+    ).mockReturnValue({
       entries: [{ path: "/path/to/node_modules", size: 100 }],
       totalSize: 100,
     });
-    (prompt as jest.Mock).mockResolvedValue("yes");
+    (prompt as ReturnType<typeof vi.fn>).mockResolvedValue("yes");
 
     await expect(main()).rejects.toThrow("process.exit: 0");
     expect(prompt).toHaveBeenCalled();
@@ -102,14 +116,16 @@ describe("main", () => {
 
   it("should log a message and exit if user declines deletion", async () => {
     process.argv.push("./some/path");
-    (findNodeModulesFolders as jest.Mock).mockResolvedValue([
+    (findNodeModulesFolders as ReturnType<typeof vi.fn>).mockResolvedValue([
       "/path/to/node_modules",
     ]);
-    (calculateSizeOfNodeModulesDirs as jest.Mock).mockReturnValue({
+    (
+      calculateSizeOfNodeModulesDirs as ReturnType<typeof vi.fn>
+    ).mockReturnValue({
       entries: [{ path: "/path/to/node_modules", size: 100 }],
       totalSize: 100,
     });
-    (prompt as jest.Mock).mockResolvedValue("no");
+    (prompt as ReturnType<typeof vi.fn>).mockResolvedValue("no");
 
     await expect(main()).rejects.toThrow("process.exit: 0");
     expect(prompt).toHaveBeenCalled();
