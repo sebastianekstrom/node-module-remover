@@ -5,8 +5,9 @@
 </p>
 
 <p align="center">
-  <img src="https://badge.fury.io/js/node-modules-cleanup.svg?icon=si%3Anpm" alt="" />
-  <img src="https://codecov.io/gh/sebastianekstrom/node-modules-cleanup/branch/main/graph/badge.svg?token=GOXVSJ3VQ0" alt=""/>
+  <img src="https://img.shields.io/npm/v/node-modules-cleanup?logo=npm&cacheSeconds=43200" alt="" />
+  <img src="https://img.shields.io/npm/dm/node-modules-cleanup?logo=npm&cacheSeconds=43200" alt=""/>
+  <img src="https://img.shields.io/codecov/c/github/sebastianekstrom/node-modules-cleanup?logo=codecov&cacheSeconds=43200" alt=""/>
 </p>
 
 ---
