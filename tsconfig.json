@@ -11,5 +11,5 @@
     "types": ["node", "jest"],
     "resolveJsonModule": true
   },
-  "include": ["src/**/*", "scripts/**/*", "scripts/generateMockFiles.ts"]
+  "include": ["src/**/*", "tooling/**/*", "tooling/generateMockFiles.ts"]
 }

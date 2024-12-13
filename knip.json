@@ -1,4 +1,4 @@
 {
-  "ignore": ["scripts/"],
+  "ignore": ["tooling/"],
   "ignoreDependencies": ["prettier"]
 }

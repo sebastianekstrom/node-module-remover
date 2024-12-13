@@ -1,4 +1,4 @@
-import { main } from "./index";
+import { main } from "./main";
 import { prompt } from "./output/prompt";
 import { findNodeModulesFolders } from "./core/findNodeModulesFolders";
 import { calculateSizeOfNodeModulesDirs } from "./core/calculateSizeOfNodeModulesDirs";
