@@ -9,7 +9,9 @@
   },
   "keywords": [
     "node_modules",
-    "remove"
+    "remove",
+    "clean node_modules",
+    "remove node_modules"
   ],
   "homepage": "https://github.com/sebastianekstrom/node-modules-cleanup#readme",
   "author": "Sebastian Ekström",
@@ -19,11 +21,11 @@
   "license": "MIT",
   "scripts": {
     "dev": "bun --hot ./src/index.ts",
-    "create-mocks": "bun ./scripts/mocks/generateMockFiles.ts",
+    "create-mocks": "bun ./tooling/mocks/generateMockFiles.ts",
     "lint": "npx eslint ./src/*.ts ./src/**/*.ts --max-warnings=0",
-    "type-check": "tsc",
+    "tsc": "tsc",
     "build": "bun build ./src/index.ts --outdir ./dist --target node && bun run post-build",
-    "post-build": "bun scripts/post-build.ts",
+    "post-build": "bun tooling/post-build.ts",
     "test:js": "jest",
     "test:unused-code": "knip"
   },
