@@ -32,9 +32,6 @@
   "bin": {
     "node-modules-cleanup": "./dist/index.mjs"
   },
-  "exclude": [
-    "vitest.config.mts"
-  ],
   "devDependencies": {
     "@types/cli-table": "^0.3.1",
     "@types/node": "^20.6.2",

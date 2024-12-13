@@ -1,4 +1,3 @@
-// src/core/getDirectorySize.test.ts
 import { describe, it, expect, vi } from "vitest";
 import { getDirectorySize } from "./getDirectorySize";
 import { execSync } from "node:child_process";
