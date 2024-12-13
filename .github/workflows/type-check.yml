@@ -15,4 +15,4 @@ jobs:
         run: bun install
 
       - name: Checking TS types
-        run: bun run type-check
+        run: bun run tsc
