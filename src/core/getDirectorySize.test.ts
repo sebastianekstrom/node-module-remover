@@ -9,7 +9,7 @@ vi.mock("node:child_process", () => ({
 
 describe("getDirectorySize", () => {
   it("should return the correct size in bytes for a given directory", () => {
-    (execSync as jest.Mock).mockReturnValue("100\n");
+    (execSync as ReturnType<typeof vi.fn>).mockReturnValue("100\n");
 
     const dirPath = "/some/directory";
     const expectedSizeInBytes = 100 * 512;
@@ -24,7 +24,7 @@ describe("getDirectorySize", () => {
     const consoleErrorSpy = vi
       .spyOn(console, "error")
       .mockImplementation(() => {});
-    (execSync as jest.Mock).mockImplementation(() => {
+    (execSync as ReturnType<typeof vi.fn>).mockImplementation(() => {
       throw new Error("Command failed");
     });
 

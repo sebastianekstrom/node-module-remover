@@ -11,7 +11,7 @@ describe("calculateSizeOfNodeModulesDirs", () => {
   });
 
   it("should calculate the total size of node_modules directories", () => {
-    (getDirectorySize as jest.Mock).mockImplementation((dir) => {
+    (getDirectorySize as ReturnType<typeof vi.fn>).mockImplementation((dir) => {
       if (dir === "/path/to/node_modules1") return 100;
       if (dir === "/path/to/node_modules2") return 200;
       return 0;

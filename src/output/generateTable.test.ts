@@ -18,7 +18,7 @@ describe("generateTable", () => {
 
   beforeEach(() => {
     consoleSpy = vi.spyOn(console, "log").mockImplementation(() => undefined);
-    (unitsFormatter as jest.Mock).mockImplementation(
+    (unitsFormatter as ReturnType<typeof vi.fn>).mockImplementation(
       (bytes: number) => `${bytes}B`,
     );
   });
