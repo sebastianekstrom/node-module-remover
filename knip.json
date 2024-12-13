@@ -1,4 +1,4 @@
 {
-  "ignore": ["tooling/"],
+  "ignore": ["tooling/", "__mocks__", "src/types"],
   "ignoreDependencies": ["prettier"]
 }

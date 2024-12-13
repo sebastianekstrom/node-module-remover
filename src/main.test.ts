@@ -5,28 +5,38 @@ import { calculateSizeOfNodeModulesDirs } from "./core/calculateSizeOfNodeModule
 import { deleteFolders } from "./core/deleteFolders";
 import { logger } from "./output/logger";
 
-jest.mock("./output/prompt");
-jest.mock("./core/findNodeModulesFolders");
-jest.mock("./core/calculateSizeOfNodeModulesDirs");
-jest.mock("./core/deleteFolders");
-jest.mock("./output/logger");
+import {
+  describe,
+  it,
+  expect,
+  vi,
+  beforeAll,
+  beforeEach,
+  afterEach,
+} from "vitest";
+
+vi.mock("./output/prompt");
+vi.mock("./core/findNodeModulesFolders");
+vi.mock("./core/calculateSizeOfNodeModulesDirs");
+vi.mock("./core/deleteFolders");
+vi.mock("./output/logger");
 
 describe("main", () => {
-  let logSpy: jest.SpyInstance;
+  let logSpy: ReturnType<typeof vi.spyOn>;
 
   beforeAll(() => {
-    jest.spyOn(process, "exit").mockImplementation((code) => {
+    vi.spyOn(process, "exit").mockImplementation((code) => {
       throw new Error(`process.exit: ${code as number}`);
     });
   });
 
   beforeEach(() => {
-    logSpy = jest.spyOn(console, "log").mockImplementation();
+    logSpy = vi.spyOn(console, "log").mockImplementation(() => undefined);
     process.argv = ["node", "script.js"];
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe("args", () => {

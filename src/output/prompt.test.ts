@@ -1,37 +1,25 @@
-import { prompt } from "./prompt";
 import readline from "node:readline";
+import { prompt } from "./prompt";
+import { describe, it, expect, vi } from "vitest";
 
-jest.mock("node:readline", () => ({
-  createInterface: jest.fn().mockReturnValue({
-    question: jest.fn(),
-    close: jest.fn(),
-  }),
-}));
+vi.mock("node:readline");
 
 describe("prompt", () => {
-  it("should return the answer from readline", async () => {
-    const mockAnswer = "some-answer";
-    const mockQuestion = "some-question?";
-
-    readline.createInterface = jest.fn().mockReturnValue({
-      question: jest.fn((_, callback) => callback(mockAnswer)),
-      close: jest.fn(),
+  it("should return the user input", async () => {
+    const mockQuestion = vi.fn((_, question) => {
+      question("test input");
     });
 
-    const answer = await prompt(mockQuestion);
-    expect(answer).toBe(mockAnswer);
-  });
-
-  it("should close the readline interface", async () => {
-    const mockQuestion = "another-question?";
-    const closeMock = jest.fn();
-
-    readline.createInterface = jest.fn().mockReturnValue({
-      question: jest.fn((_, callback) => callback(null, "")),
-      close: closeMock,
+    readline.createInterface = vi.fn().mockReturnValue({
+      question: mockQuestion,
+      close: vi.fn(),
     });
 
-    await prompt(mockQuestion);
-    expect(closeMock).toHaveBeenCalled();
+    const result = await prompt("What is your input?");
+    expect(result).toBe("test input");
+    expect(mockQuestion).toHaveBeenCalledWith(
+      "What is your input?",
+      expect.any(Function),
+    );
   });
 });

@@ -1,9 +1,10 @@
 import { findNodeModulesFolders } from "./findNodeModulesFolders";
 import * as fs from "fs";
+import { describe, it, expect, vi } from "vitest";
 
-jest.mock("fs", () => ({
+vi.mock("fs", () => ({
   promises: {
-    readdir: jest.fn(),
+    readdir: vi.fn(),
   },
 }));
 

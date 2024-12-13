@@ -1,12 +1,13 @@
 import { calculateSizeOfNodeModulesDirs } from "./calculateSizeOfNodeModulesDirs";
 import { getDirectorySize } from "./getDirectorySize";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 
-jest.mock("./getDirectorySize");
-jest.mock("../output/logger");
+vi.mock("./getDirectorySize");
+vi.mock("../output/logger");
 
 describe("calculateSizeOfNodeModulesDirs", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it("should calculate the total size of node_modules directories", () => {
@@ -38,7 +39,9 @@ describe("calculateSizeOfNodeModulesDirs", () => {
   });
 
   it("should write progress to stdout", () => {
-    const stdoutSpy = jest.spyOn(process.stdout, "write").mockImplementation();
+    const stdoutSpy = vi
+      .spyOn(process.stdout, "write")
+      .mockImplementation(() => true);
 
     calculateSizeOfNodeModulesDirs({
       nodeModulesDirs: ["/path/to/node_modules1", "/path/to/node_modules2"],
